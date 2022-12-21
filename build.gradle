@@ -30,3 +30,12 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+bootJar {
+    manifest {
+        attributes(
+                "Implementation-Version": "1.0.0",
+                "Implementation-Build": 'git rev-parse --verify --short HEAD'.execute().text.trim()
+        )
+    }
+}
