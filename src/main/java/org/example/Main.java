@@ -10,6 +10,6 @@ public class Main implements ApplicationRunner {
 
     @Override
     public void run(final ApplicationArguments args) throws Exception {
-        VaultUtils.printVersion();
+        EchelonVault.print();
     }
 }
