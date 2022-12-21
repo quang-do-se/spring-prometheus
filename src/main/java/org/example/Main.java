@@ -13,7 +13,7 @@ public class Main implements ApplicationRunner {
 	}
 
     @Override
-    public void run(final ApplicationArguments args) throws Exception {
-        EchelonVault.print();
+    public void run(final ApplicationArguments args) {
+        EchelonVault.printVersion();
     }
 }
