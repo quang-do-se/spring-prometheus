@@ -23,8 +23,6 @@ repositories {
 dependencies {
     implementation(platform(SpringBootPlugin.BOM_COORDINATES))
     implementation("org.springframework.boot:spring-boot-starter")
-
-    implementation("edu.colorado.oit.se.hashicorp.vault:sweng-hashicorp-vault-utils:1.2.0-SNAPSHOT")
 }
 
 test {
