@@ -1,8 +1,11 @@
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 plugins {
     id "org.springframework.boot" version "2.7.3"
     id 'java'
+    id "com.palantir.docker" version "0.33.0"
 }
 
 group 'org.example'
@@ -23,6 +26,7 @@ repositories {
 dependencies {
     implementation(platform(SpringBootPlugin.BOM_COORDINATES))
     implementation("org.springframework.boot:spring-boot-starter")
+    implementation("commons-io:commons-io:2.11.0")
 }
 
 test {
@@ -36,4 +40,21 @@ bootJar {
                 "Implementation-Build": 'git rev-parse --verify --short HEAD'.execute().text.trim()
         )
     }
+}
+
+
+def dateTimeFormatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME
+
+docker {
+    name "quangdo/${project.name}:${project.version}".toLowerCase()
+    dockerfile file("Dockerfile")
+    files(tasks.bootJar.outputs, file("${project.projectDir}/entrypoint.sh"))
+    tag "latestVersion", "software-engineering-docker.artifactory.colorado.edu/${project.name}:${project.version}".toLowerCase()
+    labels(["org.opencontainers.image.created": dateTimeFormatter.format(LocalDateTime.now()),
+            "org.opencontainers.image.version": "${project.version}",
+            "org.opencontainers.image.vendor" : "Quang Do",
+            "org.opencontainers.image.title"  : "${project.name}",
+            "org.opencontainers.image.source" : ""])
+    buildArgs(["JAR_BASE_NAME": "${tasks.bootJar.archiveBaseName.orNull}",
+               "JAR_VERSION"  : "${tasks.bootJar.archiveVersion.orNull}"])
 }
