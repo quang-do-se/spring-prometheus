@@ -1,7 +1,7 @@
 ``` shell
 ./gradlew clean assemble dockerPush
 
-docker run -d --pull=always -v play:/data:z -v play-logs:/logs:Z --name play quangdo/spring-play:1.0-SNAPSHOT
+docker run -d --hostname alice --pull always -v play:/data/:z -v play-logs:/logs/:Z --name play quangdo/spring-play:1.0-SNAPSHOT
 
 docker logs -f play
 
