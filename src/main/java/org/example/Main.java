@@ -7,15 +7,18 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.apache.commons.io.FileUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
 @SpringBootApplication
 @EnableScheduling
+@EnableConfigurationProperties(TestProperties.class)
 public class Main implements ApplicationRunner {
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
@@ -28,8 +31,12 @@ public class Main implements ApplicationRunner {
         System.out.println("Temp file path: " + tmpdir);
     }
 
+    @Autowired
+    TestProperties testProperties;
+
     @Scheduled(cron = "*/5 * * * * *")
     public void overlappingSchedule() throws IOException {
+        System.out.println(testProperties.getPassword());
         createFileWithJavaIO();
         createFileWithJavaNIO();
         copyTempFileWithApacheIO();
