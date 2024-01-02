@@ -1,12 +1,12 @@
 groups:
-  - name: example
+  - name: healthy
     rules:
       # Alert for any instance that is unreachable
       - alert: InstanceDown
-        expr: up == 0
+        expr: up(job='spring-prometheus') < 1
         for: 1m
         labels:
-          severity: page
+          severity: critical
         annotations:
           summary: "Instance {{ $labels.instance }} down"
           description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 5 minutes."
