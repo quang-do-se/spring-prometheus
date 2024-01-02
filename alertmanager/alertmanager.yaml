@@ -8,10 +8,11 @@ receivers:
   - name: 'mail'
     email_configs:
       - smarthost: 'mailhog:1025'
-        auth_username:  # Local and Testing only
-        auth_password:  # Local and Testing only
         from: 'noreply@colorado.edu'
         to: 'noreply@colorado.edu'
         headers:
           subject: 'Prometheus Mail Alerts - Spring Application'
+        send_resolved: true
+        auth_username:  # Local and Testing only
+        auth_password:  # Local and Testing only
         require_tls: false  # Local and Testing only
