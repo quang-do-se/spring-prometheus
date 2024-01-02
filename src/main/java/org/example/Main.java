@@ -20,7 +20,6 @@ public class Main implements ApplicationRunner {
     public void run(final ApplicationArguments args) {
     }
 
-
     @Scheduled(cron = "*/5 * * * * *")
     public void overlappingSchedule() throws IOException {
         System.out.println("Hello");
