@@ -1,4 +1,4 @@
 ``` shell
-docker-compose up -d
+docker-compose down && docker-compose up -d
 ```
-Then start the Spring applicacion.
+Then start the Spring application.
