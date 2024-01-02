@@ -10,38 +10,38 @@ services:
     volumes:
       - ./prometheus:/etc/prometheus
       - prometheus-data:/prometheus
-    command: --web.enable-lifecycle --config.file=/etc/prometheus/prometheus.yml
+    command: --web.enable-lifecycle --config.file=/etc/prometheus/prometheus.yaml
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
-  grafana:
-    image: grafana/grafana:latest
-    container_name: grafana
-    restart: unless-stopped
-    user: '0'
-    ports:
-      - 3000:3000
-    volumes:
-      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
-      - grafana-data:/var/lib/grafana
-
-  alertmanager:
-    image: prom/alertmanager:v0.23.0
-    container_name: alertmanager
-    restart: unless-stopped
-    ports:
-      - "9093:9093"
-    volumes:
-      - "./alertmanager:/config"
-      - alertmanager-data:/data
-    command: --config.file=/config/alertmanager.yml --log.level=debug
-
-  mailhog:
-    image: mailhog/mailhog
-    container_name: 'mailhog'
-    ports:
-      - 1025:1025 # smtp server
-      - 8025:8025 # web ui
+#  grafana:
+#    image: grafana/grafana:latest
+#    container_name: grafana
+#    restart: unless-stopped
+#    user: '0'
+#    ports:
+#      - 3000:3000
+#    volumes:
+#      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+#      - grafana-data:/var/lib/grafana
+#
+#  alertmanager:
+#    image: prom/alertmanager:v0.23.0
+#    container_name: alertmanager
+#    restart: unless-stopped
+#    ports:
+#      - "9093:9093"
+#    volumes:
+#      - "./alertmanager:/config"
+#      - alertmanager-data:/data
+#    command: --config.file=/config/alertmanager.yml --log.level=debug
+#
+#  mailhog:
+#    image: mailhog/mailhog
+#    container_name: 'mailhog'
+#    ports:
+#      - 1025:1025 # smtp server
+#      - 8025:8025 # web ui
 
 volumes:
   prometheus-data:
