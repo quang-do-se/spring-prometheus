@@ -8,8 +8,8 @@ receivers:
   - name: 'mail'
     email_configs:
       - smarthost: 'mailhog:1025'
-        auth_username:
-        auth_password:
+        auth_username:  # Local and Testing only
+        auth_password:  # Local and Testing only
         from: 'noreply@colorado.edu'
         to: 'noreply@colorado.edu'
         headers:
