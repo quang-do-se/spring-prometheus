@@ -3,7 +3,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 plugins {
-    id "org.springframework.boot" version "2.7.3"
+    id "org.springframework.boot" version "3.2.0"
     id 'java'
     id "com.palantir.docker" version "0.33.0"
 }
@@ -13,20 +13,13 @@ version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
-    maven {
-        name "GitHubPackages"
-        url "https://maven.pkg.github.com/ucboulder/sweng-echelon-packages"
-        credentials {
-            username = "oit-sweng-build-bot"
-            password = project.hasProperty("github.repository-token") ? project.property("github.repository-token") : ""
-        }
-    }
 }
 
 dependencies {
     implementation(platform(SpringBootPlugin.BOM_COORDINATES))
     implementation("org.springframework.boot:spring-boot-starter")
-    implementation("commons-io:commons-io:2.11.0")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("io.micrometer:micrometer-registry-prometheus:1.12.1")
 }
 
 test {
@@ -41,7 +34,6 @@ bootJar {
         )
     }
 }
-
 
 def dateTimeFormatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME
 
