@@ -6,7 +6,7 @@ server:
 # All metrics for Prometheus are scraped from a /metrics endpoint.
 management:
   server:
-    port: 9999
+    port: 8888
   endpoint:
     health:
       show-details: always
