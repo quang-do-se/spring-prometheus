@@ -21,7 +21,7 @@ alerting:
 # A scrape configuration containing exactly one endpoint to scrape:
 # Here it's Prometheus itself.
 scrape_configs:
-  - job_name: 'spring-prometheus'
+  - job_name: 'spring-app-a'
     metrics_path: '/metrics'
     # Override the global default and scrape targets from this job every 5 seconds.
     scrape_interval: 15s
