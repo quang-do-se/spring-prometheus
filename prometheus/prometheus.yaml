@@ -27,3 +27,9 @@ scrape_configs:
     scrape_interval: 15s
     static_configs:
       - targets: [ 'app-a:8888' ]
+  - job_name: 'spring-app-b'
+    metrics_path: '/metrics'
+    # Override the global default and scrape targets from this job every 5 seconds.
+    scrape_interval: 15s
+    static_configs:
+      - targets: [ 'app-b:8888' ]
