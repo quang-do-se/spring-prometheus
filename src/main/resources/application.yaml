@@ -20,5 +20,4 @@ management:
       exposure:
         include:
           - health
-          - info
           - prometheus

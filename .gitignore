@@ -22,5 +22,3 @@ wrapper/
 
 # MacOS
 .DS_Store
-
-ManagerUI/src/main/resources/static/
