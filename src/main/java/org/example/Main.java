@@ -18,7 +18,7 @@ public class Main {
     @Autowired
     MeterRegistry meterRegistry;
 
-    @Scheduled(cron = "*/5 * * * * *")
+    @Scheduled(cron = "*/30 * * * * *")
     public void populateMetric() {
         Counter counter = Counter.builder("spring.app")
                                  .description("Increase counter in Spring App")
