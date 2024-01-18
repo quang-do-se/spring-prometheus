@@ -11,7 +11,8 @@ receivers:
         from: 'noreply@colorado.edu'
         to: 'noreply@colorado.edu'
         headers:
-          subject: 'Prometheus Mail Alerts - Spring Application'
+          key: "subject"
+          value: 'Prometheus Mail Alerts - Spring Application'
         send_resolved: true
         auth_username:  # Local and Testing only
         auth_password:  # Local and Testing only
