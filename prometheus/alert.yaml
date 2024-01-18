@@ -3,8 +3,8 @@ groups:
     rules:
       # Alert for any instance that is unreachable
       - alert: InstanceDown
-        expr: up{job="spring-prometheus"} < 1
-        for: 30s
+        expr: up < 1
+        for: 0s
         labels:
           severity: critical
         annotations:
