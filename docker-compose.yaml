@@ -24,7 +24,7 @@ services:
       - grafana-data:/var/lib/grafana
 
   alertmanager:
-    image: prom/alertmanager:v0.23.0
+    image: prom/alertmanager:v0.26.0
     container_name: alertmanager
     restart: unless-stopped
     ports:
