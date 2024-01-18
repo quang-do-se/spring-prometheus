@@ -21,3 +21,6 @@ management:
         include:
           - health
           - prometheus
+  observations:
+    key-values:
+      course: ${gradepolling.course-sourced-id}

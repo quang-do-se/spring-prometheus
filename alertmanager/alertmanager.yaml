@@ -17,9 +17,7 @@ receivers:
         auth_password:  # Local and Testing only
         require_tls: false  # Local and Testing only
         html: |
-          <br/>
-          Struct:
+          Struct: <br/>
           {{ printf "%#v" . }}
-          <br/>
     webhook_configs:
       - url: https://webhook.site/7c03c45e-3eb3-42e6-8a94-7317b7b401c7
