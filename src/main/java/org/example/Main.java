@@ -20,12 +20,19 @@ public class Main {
 
     @Scheduled(cron = "*/30 * * * * *")
     public void populateMetric() {
-        Counter counter = Counter.builder("spring.app")
+        Counter testingCounter = Counter.builder("spring.app")
                                  .description("Increase counter in Spring App")
-                                 .tags("for", "testing")
+                                 .tags("name", "testing")
                                  .register(meterRegistry);
 
-        counter.increment();
+        Counter anotherCounter = Counter.builder("spring.app")
+                                 .description("Increase counter in Spring App")
+                                 .tags("name", "duplicate-testing")
+                                 .register(meterRegistry);
+
+        testingCounter.increment();
+        anotherCounter.increment();
+
         System.out.println("Increased counter.");
     }
 }
