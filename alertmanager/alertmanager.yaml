@@ -19,5 +19,5 @@ receivers:
         html: |
           Struct: <br/>
           {{ printf "%#v" . }}
-    webhook_configs:
-      - url: https://webhook.site/7c03c45e-3eb3-42e6-8a94-7317b7b401c7
+#    webhook_configs:
+#      - url: https://webhook.site/7c03c45e-3eb3-42e6-8a94-7317b7b401c7
