@@ -1,6 +1,7 @@
 package org.example;
 
 import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.Gauge;
 import io.micrometer.core.instrument.MeterRegistry;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,15 @@ public class Main {
                                      .description("Year")
                                      .register(meterRegistry);
         yearCounter.increment(2024);
+
+        Gauge.builder("is-notifiable", 2024, Main::isNotification)
+                           .strongReference(true)
+             .register(meterRegistry);
+
+    }
+
+    static int isNotification(int term) {
+        return term > 2023 ? 1 : 0;
     }
 
     @Scheduled(cron = "*/30 * * * * *")

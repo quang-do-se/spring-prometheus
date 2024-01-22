@@ -7,17 +7,15 @@ route:
 receivers:
   - name: 'mail'
     email_configs:
-      - smarthost: 'mailhog:1025'
+      - smarthost: smtp.colorado.edu:587
         from: 'noreply@colorado.edu'
-        to: 'noreply@colorado.edu'
+        to: 'fb325c12.msteams.colorado.edu@amer.teams.ms'
         headers:
-          Subject: 'Prometheus Mail Alerts - Spring Application - {{ .CommonLabels.severity }} '
-        send_resolved: true
-        auth_username:  # Local and Testing only
-        auth_password:  # Local and Testing only
-        require_tls: false  # Local and Testing only
-        html: |
-          Struct: <br/>
-          {{ printf "%#v" . }}
+          Subject: 'Prometheus Mail Alerts - Spring Application'
+#        send_resolved: true
+        auth_username: atap-automated-email
+        auth_password: =36~#h+`>TYj"lU&}orI
+#        require_tls: false  # Local and Testing only
+        html: Testing
 #    webhook_configs:
 #      - url: https://webhook.site/7c03c45e-3eb3-42e6-8a94-7317b7b401c7

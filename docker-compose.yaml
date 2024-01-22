@@ -47,11 +47,11 @@ services:
     ports:
       - "9001:8888"
 
-  app-b:
-    image: quangdo/spring-prometheus:1.0-snapshot
-    container_name: app-b
-    ports:
-      - "9002:8888"
+#  app-b:
+#    image: quangdo/spring-prometheus:1.0-snapshot
+#    container_name: app-b
+#    ports:
+#      - "9002:8888"
 
 
 volumes:
