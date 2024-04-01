@@ -1,5 +1,9 @@
 package org.example;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.Gauge;
 import io.micrometer.core.instrument.MeterRegistry;
@@ -37,22 +41,21 @@ public class Main {
         return term > 2023 ? 1 : 0;
     }
 
-    @Scheduled(cron = "*/30 * * * * *")
+    @Scheduled(cron = "*/1 * * * * *")
     public void populateMetric() {
-        Counter testingCounter = Counter.builder("spring.app")
+        List<String> names = Arrays.asList("superman", "spider-man", "batman");
+
+        Random random = new Random();
+        int randomInt = random.nextInt(names.size());
+        String name = names.get(randomInt);
+
+        Counter dynamicCounter = Counter.builder("spring.app")
                                         .description("Increase counter in Spring App")
-                                        .tags("name", "testing")
+                                        .tags("name", name)
                                         .register(meterRegistry);
 
+        dynamicCounter.increment();
 
-        Counter anotherCounter = Counter.builder("spring.app")
-                                        .description("Increase counter in Spring App")
-                                        .tags("name", "duplicate-testing")
-                                        .register(meterRegistry);
-
-        testingCounter.increment();
-        anotherCounter.increment();
-
-        System.out.println("Increased counter.");
+        System.out.println("Increased counter for " + name + ".");
     }
 }
