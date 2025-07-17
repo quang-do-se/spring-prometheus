@@ -1,5 +1,3 @@
-version: '3'
-
 services:
   prometheus:
     image: prom/prometheus:v2.26.0
@@ -11,6 +9,7 @@ services:
       - ./prometheus:/etc/prometheus
       - prometheus-data:/prometheus
     command: --web.enable-lifecycle --config.file=/etc/prometheus/prometheus.yaml
+    platform: linux/amd64
 
   grafana:
     image: grafana/grafana:latest
@@ -22,6 +21,7 @@ services:
     volumes:
       - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
       - grafana-data:/var/lib/grafana
+    platform: linux/amd64
 
   alertmanager:
     image: prom/alertmanager:v0.26.0
@@ -33,6 +33,7 @@ services:
       - "./alertmanager:/config"
       - alertmanager-data:/data
     command: --config.file=/config/alertmanager.yaml --log.level=debug
+    platform: linux/amd64
 
   mailhog:
     image: mailhog/mailhog
@@ -40,19 +41,21 @@ services:
     ports:
       - "1025:1025" # smtp server
       - "8025:8025" # web ui
+    platform: linux/amd64
 
   app-a:
     image: local/spring-prometheus:1.0-snapshot
     container_name: app-a
     ports:
       - "9001:8888"
+    platform: linux/amd64
 
   app-b:
     image: local/spring-prometheus:1.0-snapshot
     container_name: app-b
     ports:
       - "9002:8888"
-
+    platform: linux/amd64
 
 volumes:
   prometheus-data:
