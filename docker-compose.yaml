@@ -42,16 +42,16 @@ services:
       - "8025:8025" # web ui
 
   app-a:
-    image: quangdo/spring-prometheus:1.0-snapshot
+    image: local/spring-prometheus:1.0-snapshot
     container_name: app-a
     ports:
       - "9001:8888"
 
-#  app-b:
-#    image: quangdo/spring-prometheus:1.0-snapshot
-#    container_name: app-b
-#    ports:
-#      - "9002:8888"
+  app-b:
+    image: local/spring-prometheus:1.0-snapshot
+    container_name: app-b
+    ports:
+      - "9002:8888"
 
 
 volumes:

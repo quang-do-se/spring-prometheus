@@ -1,9 +1,9 @@
-FROM eclipse-temurin:17-jre-jammy@sha256:ddf36656dc8920621fddf4928bdcb4b98c0d0e7bc9672f0cea8115c10ad5cbc6
+FROM eclipse-temurin:17-jre-jammy
 
 ENV TZ="America/Denver"
-ARG JAR_BASE_NAME
+ARG JAR_NAME=spring-prometheus-1.0-SNAPSHOT.jar
 ARG JAR_VERSION
-ENV JAR_LOCATION="/app/${JAR_BASE_NAME}-${JAR_VERSION}.jar"
+ENV JAR_LOCATION="/app/${JAR_NAME}"
 
 WORKDIR /app
 
@@ -13,7 +13,7 @@ RUN apt-get update \
   && apt-get clean autoclean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-COPY ./${JAR_BASE_NAME}-*.jar "${JAR_LOCATION}"
+COPY ./build/libs/${JAR_NAME} "${JAR_LOCATION}"
 COPY ./entrypoint.sh /app/entrypoint.sh
 
 RUN set -eux; \
