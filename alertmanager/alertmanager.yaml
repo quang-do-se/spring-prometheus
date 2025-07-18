@@ -11,13 +11,16 @@ receivers:
         from: 'noreply@colorado.edu'
         to: 'noreply@colorado.edu'
         headers:
-          Subject: 'Prometheus Mail Alerts - Spring Application - {{ .CommonLabels.severity }} '
+          Subject: "Prometheus Mail Alerts - Spring Application - {{ .CommonLabels.severity }}"
         send_resolved: true
         auth_username:  # Local and Testing only
         auth_password:  # Local and Testing only
         require_tls: false  # Local and Testing only
         html: |
-          Struct: <br/>
-          {{ printf "%#v" . }}
-    webhook_configs:
-      - url: https://o365coloradoedu.webhook.office.com/webhookb2/bb1b8e64-8d45-49b0-87b6-59b56c46c030@3ded8b1b-070d-4629-82e4-c0b019f46057/IncomingWebhook/1c7e877b4e4d4e3386498dabd72e400c/b07a34eb-1ba4-4f20-8031-ff55948b4039
+          {{ .CommonAnnotations.description }}
+
+#          <br/>
+#          Struct: <br/>
+#          {{ printf "%#v" . }}
+#    webhook_configs:
+#      - url: https://o365coloradoedu.webhook.office.com/webhookb2/bb1b8e64-8d45-49b0-87b6-59b56c46c030@3ded8b1b-070d-4629-82e4-c0b019f46057/IncomingWebhook/1c7e877b4e4d4e3386498dabd72e400c/b07a34eb-1ba4-4f20-8031-ff55948b4039
