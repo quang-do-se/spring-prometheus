@@ -35,9 +35,9 @@ services:
     command: --config.file=/config/alertmanager.yaml --log.level=debug
     platform: linux/amd64
 
-  mailhog:
-    image: mailhog/mailhog
-    container_name: 'mailhog'
+  mail-trap:
+    image: axllent/mailpit
+    container_name: mail-trap
     ports:
       - "1025:1025" # smtp server
       - "8025:8025" # web ui

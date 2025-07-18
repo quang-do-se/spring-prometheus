@@ -7,7 +7,7 @@ route:
 receivers:
   - name: 'mail'
     email_configs:
-      - smarthost: 'mailhog:1025'
+      - smarthost: 'mail-trap:1025'
         from: 'noreply@colorado.edu'
         to: 'noreply@colorado.edu'
         headers:
